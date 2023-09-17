@@ -1,23 +1,25 @@
-import './App.css';
-import logo from './logo.svg';
+import { useState } from 'react';
+import DownloadButton from './DownloadButton';
+import FunctionalityDescription from './FunctionalityDescription';
+import Meme from './Meme';
+import MemeForm from './MemeForm';
+
+// import Preview from './Preview';
 
 export default function App() {
+  const [memeFinalUrl, setMemeFinalUrl] = useState(
+    'https://api.memegen.link/images/yodawg/',
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h2>Random Meme Generator</h2>
+
+      <FunctionalityDescription />
+      {/* <Preview /> */}
+      <MemeForm setMemeFinalUrl={setMemeFinalUrl} />
+      <Meme memeFinalUrl={memeFinalUrl} />
+      <DownloadButton apiUrl={memeFinalUrl} />
+    </>
   );
 }
